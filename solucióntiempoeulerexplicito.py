@@ -25,7 +25,7 @@ for n in range(rang_temps):
     if any(((T[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
         break
 
-print(n)
+print(n*deltat)
 
 plt.plot(x,(T/((0.56)/(Pext * L**2)))-273.15)
 plt.grid(True)
@@ -35,4 +35,5 @@ plt.hlines(50,0,2,color='r',linestyle='--')
 plt.hlines(80,0,2,color='r',linestyle='--')
 plt.vlines(0.75,36.5,80,color='r',linestyle='--')
 plt.vlines(1.25,36.5,80,color='r',linestyle='--')
+
 plt.show()
