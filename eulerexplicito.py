@@ -28,6 +28,8 @@ plt.grid(True)
 plt.xlabel('Posició (cm)')
 plt.ylabel('Graus Centígrads')
 plt.hlines(50,0,2,color='r',linestyle='--')
+plt.hlines(80,0,2,color='r',linestyle='--')
 plt.vlines(0.75,36.5,55,color='r',linestyle='--')
 plt.vlines(1.25,36.5,55,color='r',linestyle='--')
+
 plt.show()
