@@ -1,1 +1,3 @@
-# Practica-1
+# Pràctica-1
+
+Marc, Miguel, Yixuan, Sergi
