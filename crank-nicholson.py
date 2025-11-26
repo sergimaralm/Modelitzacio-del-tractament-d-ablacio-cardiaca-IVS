@@ -23,23 +23,23 @@ def jacobi(A, b, x0, max_iter=50):
         x = x_new
     return x
 
-# PARÁMETROS DEL PROBLEMA
+# PARÁMETROS
 L = 1.0             
-N = 101          
-dx = 1 / (N - 1)
-dt = dx**2         
-
-Ta = 0.025      
-
+N = 101
+Ta = 0.025    
 Pext=(0.472 * 40**2)/(2*L**2)
-To=309.65*((0.56)/(Pext * L**2))
+To=309.65*((0.56)/(Pext * L**2))  
+
+dx = 1 / (N - 1)
+dt = 0.5* dx**2         
+
 r = dt / dx**2
 x = np.linspace(0, 2, N)
 
 # CONDICIÓN INICIAL 
 phi = To*np.ones(N)
 
-# MATRICES A y B (tridiagonales)
+# MATRICES A y B 
 A = np.zeros((N, N))
 B = np.zeros((N, N))
 
@@ -63,10 +63,12 @@ while t < Ta:
     phi = jacobi(A, b, phi)  # resolvemos Ax=b por Jacobi
     phi[0] = To
     phi[-1] = To
+
+    if any(((phi[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
+        break
     t += dt
 
-print("Solución final en T =", Ta)
-print(phi)
+print(t)
 
 plt.plot(x,(phi/((0.56)/(Pext * L**2)))-273.15)
 plt.grid(True)
