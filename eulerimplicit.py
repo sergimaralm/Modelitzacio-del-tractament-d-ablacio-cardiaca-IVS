@@ -10,49 +10,31 @@ x = np.linspace(0,2,N)
 
 #Constants
 
-deltat=deltax**2
+deltat=0.5*deltax**2
 To=309.65*((0.56)/(Pext * L**2))
 rang_temps=round(ta/deltat)
 gamma = deltat/deltax**2
 T0 = To*np.ones(N)
 T1 = np.zeros(N)
-T2 = np.zeros(N)
 
 #Jacobi per la matriu Mx = b, on x serà T_(n+1)
+M = np.identity(N) + (gamma)*(np.diag(2*np.ones(N), 0) + np.diag(-np.ones(N-1), -1) + np.diag(-np.ones(N-1), 1))
 
-def jacobi(T1, T0):
-    M = np.identity(N) + (gamma/2)*(np.diag(2*np.ones(N), 0) + np.diag(-np.ones(N-1), -1) + np.diag(-np.ones(N-1), 1))
-    b = (gamma*(deltax**2))*np.ones(N) + (np.identity(N)) @ T1  - (2/gamma) * (M - np.identity(N)) @ T0
-    l = 0
-    for i in range(round(25)):        
-        T2 = (1/(1+gamma))*((np.diag(-np.diag(M,-1),-1) + np.diag(-np.diag(M,1), 1)) @ T0 + b)
-        T2[0] = To
-        T2[-1] = To
-        l += 1
-        T0 = T2.copy()
-    return T2, T0, l
-
-
-
-# Per al primer pas temporal fem el mètode explícit, doncs necessitem dos punts per començar, escollim deltat = 0.25*deltax**2
-for i in range(1,N-1):
-        T1[i]= T0[i] + (0.49) * (T0[i+1] - 2*T0[i] + T0[i-1] + (deltax)**2)
-        T1[0]=To
-        T1[-1]=To
+def jacobi(M, T0):
+    b = deltat*np.ones(N) + T0
+    for i in range(round(50)):        
+        T1 = (1/(1+2*gamma))*((-np.diag(np.diag(M,-1),-1) - np.diag(np.diag(M,1), 1)) @ T0 + b)
+        T1[0] = To
+        T1[-1] = To
+        T0 = T1.copy()
+    return T1
 #Metode implicit
-l = []
-for n in range(rang_temps-1):
-    T2, T0, l_temp = jacobi(T1, T0)
-    l.append(l_temp)
-    T2[0] = To
-    T2[-1] = To
-    T1[0] = To
-    T1[-1] = To
-    T1 = T2.copy()
+for n in range(rang_temps):
+    T1 = jacobi(M, T0)
+    T0 = T1.copy()
 
-print(l, rang_temps)
 
-plt.plot(x,(T2/((0.56)/(Pext * L**2)))-273.15)
+plt.plot(x,(T1/((0.56)/(Pext * L**2)))-273.15)
 plt.grid(True)
 plt.xlabel('Posició (cm)')
 plt.ylabel('Graus Centígrads')
