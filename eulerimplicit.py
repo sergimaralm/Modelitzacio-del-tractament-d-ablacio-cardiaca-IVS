@@ -32,8 +32,11 @@ def jacobi(M, T0):
 for n in range(rang_temps):
     T1 = jacobi(M, T0)
     T0 = T1.copy()
+    if any(((T1[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
+        temps = n*deltat
+        break
 
-
+print(temps)
 plt.plot(x,(T1/((0.56)/(Pext * L**2)))-273.15)
 plt.grid(True)
 plt.xlabel('Posició (cm)')

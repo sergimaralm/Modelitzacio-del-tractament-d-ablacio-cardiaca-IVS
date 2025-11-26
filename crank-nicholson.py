@@ -7,7 +7,7 @@ def jacobi(A, b, x0, max_iter=50):
     D = np.diag(np.diag(A))
     E = np.tril(A, k=-1)     # triangular inferior sin diagonal
     F = np.triu(A, k=1)      # triangular superior sin diagonal
-
+   
     D_inv = np.diag(1 / np.diag(D))
 
     # Matriz P = D^{-1}(E+F)
