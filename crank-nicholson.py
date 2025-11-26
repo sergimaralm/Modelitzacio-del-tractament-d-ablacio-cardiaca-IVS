@@ -1,6 +1,7 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
-def jacobi(A, b, x0, tol=1e-10, max_iter=5000):
+def jacobi(A, b, x0, max_iter=50):
 
     # Descomposición A = D + E + F
     D = np.diag(np.diag(A))
@@ -17,11 +18,9 @@ def jacobi(A, b, x0, tol=1e-10, max_iter=5000):
     x = x0.copy()
     for _ in range(max_iter):
         x_new = P @ x + c
-        if np.linalg.norm(x_new - x, np.inf) < tol:
-            return x_new
+        x_new[0] = x0[0]
+        x_new[-1] = x0[-1]
         x = x_new
-
-    print("Jacobi no convergió")
     return x
 
 # PARÁMETROS DEL PROBLEMA
@@ -68,3 +67,14 @@ while t < Ta:
 
 print("Solución final en T =", Ta)
 print(phi)
+
+plt.plot(x,(phi/((0.56)/(Pext * L**2)))-273.15)
+plt.grid(True)
+plt.xlabel('Posició (cm)')
+plt.ylabel('Graus Centígrads')
+plt.hlines(50,0,2,color='r',linestyle='--')
+plt.hlines(80,0,2,color='r',linestyle='--')
+plt.vlines(0.75,36.5,55,color='r',linestyle='--')
+plt.vlines(1.25,36.5,55,color='r',linestyle='--')
+
+plt.show()
