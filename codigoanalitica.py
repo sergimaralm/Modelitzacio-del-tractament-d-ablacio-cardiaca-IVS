@@ -1,4 +1,7 @@
 import math
+import numpy as np
+import matplotlib.pyplot as plt
+
 beta = 36.5
 To = (0.472*((40/(math.sqrt(2)))**2))/(0.56)
 def Temperatura (x,t,n):
@@ -7,9 +10,25 @@ def Temperatura (x,t,n):
 n=1
 N=9999
 r=0
-while n < N:
-    r = r + Temperatura(0.025,0.5,n)
-    n = n + 2
+T_list = []
+x_list = np.linspace(0,1,100)
 
+for x in x_list:
+    while n < N:
+        r = r + Temperatura(x,0.025,n)
+        n = n + 2
+    T_list.append(r+beta)
+    n=1
+    r=0
+
+plt.plot(x_list*2,T_list)
+plt.grid()
+plt.xlabel('Posició (cm)')
+plt.ylabel('Graus Centígrads')
+plt.hlines(50,0,2,color='r',linestyle='--')
+plt.hlines(80,0,2,color='r',linestyle='--')
+plt.vlines(0.75,36.5,80,color='r',linestyle='--')
+plt.vlines(1.25,36.5,80,color='r',linestyle='--')
 print("La Temperatura és")
-print(r+beta)
+print(T_list)
+plt.show()
