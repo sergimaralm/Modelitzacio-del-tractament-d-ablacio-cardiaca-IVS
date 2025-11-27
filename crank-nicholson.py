@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from codigoanalitica import analitica
 
 # Metóde Jacobi resoldre Ax = b
 def jacobi(A, b, x0, max_iter=50):
