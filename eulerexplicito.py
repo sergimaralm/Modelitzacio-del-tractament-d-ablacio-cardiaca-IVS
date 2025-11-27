@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from codigoanalitica import analitica
+
 L=2
 N=101
 Pext=(0.472 * 40**2)/(2*L**2)

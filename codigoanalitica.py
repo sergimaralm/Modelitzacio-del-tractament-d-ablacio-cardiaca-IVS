@@ -2,24 +2,28 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-beta = 36.5
-To = (0.472*((40/(math.sqrt(2)))**2))/(0.56)
-def Temperatura (x,t,n):
-    T = 4*To*math.sin(n*math.pi*x)*((1-math.exp(-n**2 * math.pi**2 * t))/(n**3 * math.pi**3))
-    return T
-n=1
-N=9999
-r=0
-T_list = []
-x_list = np.linspace(0,1,100)
-
-for x in x_list:
-    while n < N:
-        r = r + Temperatura(x,0.025,n)
-        n = n + 2
-    T_list.append(r+beta)
+def analitica(x_list,t,N):
+    beta = 36.5
+    def Temperatura (x,t,n):
+        To = (0.472*((40/(math.sqrt(2)))**2))/(0.56)
+        T = 4*To*math.sin(n*math.pi*x)*((1-math.exp(-n**2 * math.pi**2 * t))/(n**3 * math.pi**3))
+        return T
     n=1
     r=0
+    T_list = []
+    x_list = np.linspace(0,1,100)
+
+    for x in x_list:
+        while n < N:
+            r = r + Temperatura(x,0.025,n)
+            n = n + 2
+        T_list.append(r+beta)
+        n=1
+        r=0
+    return T_list
+
+x_list = np.linspace(0,1,100)
+T_list = analitica(x_list,0.025,9999)
 
 plt.plot(x_list*2,T_list)
 plt.grid()
