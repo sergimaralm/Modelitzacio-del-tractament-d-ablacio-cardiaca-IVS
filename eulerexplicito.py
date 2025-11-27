@@ -22,6 +22,9 @@ for n in range(rang_temps):
         T_nuevo[-1]=To
     
     T = T_nuevo.copy()
+    # if any(((T[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
+    #         print(f"El temps mínim en segons és de {n*deltat}")
+    #         break
 
 plt.plot(x,(T/((0.56)/(Pext * L**2)))-273.15)
 plt.grid(True)

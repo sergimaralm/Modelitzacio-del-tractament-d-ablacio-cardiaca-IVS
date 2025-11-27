@@ -64,11 +64,10 @@ while t < Ta:
     phi[0] = To
     phi[-1] = To
 
-    if any(((phi[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
-        break
+    # if any(((phi[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
+    #     print(t)
+    #     break
     t += dt
-
-print(t)
 
 plt.plot(x,(phi/((0.56)/(Pext * L**2)))-273.15)
 plt.grid(True)
