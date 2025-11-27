@@ -1,29 +1,27 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Metóde Jacobi resoldre Ax = b
 def jacobi(A, b, x0, max_iter=50):
 
-    # Descomposición A = D + E + F
+    # Descomposició A = D + E + F
     D = np.diag(np.diag(A))
-    E = np.tril(A, k=-1)     # triangular inferior sin diagonal
-    F = np.triu(A, k=1)      # triangular superior sin diagonal
+    E = np.tril(A, k=-1)     
+    F = np.triu(A, k=1)      
    
+    # Matriu D^{-1} i P
     D_inv = np.diag(1 / np.diag(D))
-
-    # Matriz P = D^{-1}(E+F)
     P = -D_inv @ (E + F)
-    # Término constante c = D^{-1}b
-    c = D_inv @ b
 
     x = x0.copy()
     for _ in range(max_iter):
-        x_new = P @ x + c
+        x_new = P @ x + D_inv @ b
         x_new[0] = x0[0]
         x_new[-1] = x0[-1]
         x = x_new
     return x
 
-# PARÁMETROS
+# Parametres
 L = 2             
 N = 101
 Ta = 0.025    
@@ -36,10 +34,10 @@ dt = 0.5* dx**2
 r = dt / dx**2
 x = np.linspace(0, 2, N)
 
-# CONDICIÓN INICIAL 
+# Condició inicial
 phi = To*np.ones(N)
 
-# MATRICES A y B 
+# Matrius A i B
 A = np.zeros((N, N))
 B = np.zeros((N, N))
 
@@ -48,7 +46,7 @@ for i in range(N):
     A[i, i] = 1 + r
     B[i, i] = 1 - r
 
-    # Sub y super diagonales
+    # Sub y super diagonals
     if i > 0:
         A[i, i-1] = -r / 2
         B[i, i-1] = r / 2
@@ -56,14 +54,11 @@ for i in range(N):
         A[i, i+1] = -r / 2
         B[i, i+1] = r / 2
 
-# BUCLE EN EL TIEMPO 
+# Bucle
 t = 0.0
 while t < Ta:
-    b = (B @ phi) + dt  # lado derecho
-    phi = jacobi(A, b, phi)  # resolvemos Ax=b por Jacobi
-    phi[0] = To
-    phi[-1] = To
-
+    b = (B @ phi) + dt 
+    phi = jacobi(A, b, phi)  
     # if any(((phi[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
     #     print(t)
     #     break
