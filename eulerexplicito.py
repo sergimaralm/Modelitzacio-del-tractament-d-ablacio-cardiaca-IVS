@@ -27,7 +27,7 @@ for deltat in deltat_list:
         #         print(f"El temps mínim en segons és de {n*deltat}")
         #         break
 
-    print(f"El temps mínim en segons és de {n*deltat}")
+    # print(f"El temps mínim en segons és de {n*deltat}")
     plt.plot(x,(T/((0.56)/(Pext * L**2)))-273.15)
     plt.grid(True)
     plt.xlabel('Posició (cm)')
