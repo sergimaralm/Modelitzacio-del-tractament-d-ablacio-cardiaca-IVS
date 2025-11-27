@@ -24,7 +24,7 @@ def jacobi(A, b, x0, max_iter=50):
     return x
 
 # PARÁMETROS
-L = 1.0             
+L = 2             
 N = 101
 Ta = 0.025    
 Pext=(0.472 * 40**2)/(2*L**2)

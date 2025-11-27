@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-L=1
+L=2
 N=101
 Pext=(0.472 * 40**2)/(2*L**2)
 deltax=1/(N-1)
