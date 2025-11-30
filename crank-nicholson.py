@@ -42,19 +42,8 @@ for deltat in deltat_list:
     T = To*np.ones(N)
 
     # Matrius A i B
-    A = np.zeros((N, N))
-    B = np.zeros((N, N))
-
-    for i in range(N):
-        A[i, i] = 1 + gamma
-        B[i, i] = 1 - gamma
-
-        if i > 0:
-            A[i, i-1] = -gamma / 2
-            B[i, i-1] = gamma / 2
-        if i < N-1:
-            A[i, i+1] = -gamma / 2
-            B[i, i+1] = gamma / 2
+    A = np.identity(N) + (gamma)*(np.diag(np.ones(N), 0) + np.diag(-0.5*np.ones(N-1), -1) + np.diag(-0.5*np.ones(N-1), 1))
+    B = np.identity(N) + (gamma)*(np.diag(-np.ones(N), 0) + np.diag(0.5*np.ones(N-1), -1) + np.diag(0.5*np.ones(N-1), 1))
 
     # Bucle
     t = 0.0
