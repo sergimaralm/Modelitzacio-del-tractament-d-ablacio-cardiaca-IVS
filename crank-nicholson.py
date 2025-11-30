@@ -70,6 +70,7 @@ plt.ylabel('Temperatura  (ºC)')
 plt.gca().tick_params(direction="in")
 plt.legend()
 plt.grid()
+plt.savefig('figures/crank.png', bbox_inches='tight')
 plt.show()
 
 # Gràfica d'errors absoluts
@@ -80,6 +81,7 @@ plt.ylabel('Error absolut (ºC)')
 plt.gca().tick_params(direction="in")
 plt.legend()
 plt.grid()
+plt.savefig('figures/err_crank.png', bbox_inches='tight')
 plt.show()
 
 # Gràfica d'errros relatius percentuals
@@ -90,4 +92,5 @@ plt.ylabel('Error realtiu')
 plt.gca().tick_params(direction="in")
 plt.legend()
 plt.grid()
+plt.savefig('figures/relerr_crank.png', bbox_inches='tight')
 plt.show()
