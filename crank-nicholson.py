@@ -30,6 +30,7 @@ Pext = (0.472*40**2)/(2*L**2)
 To = 309.65*((0.56)/(Pext*L**2))  
 x = np.linspace(0, 2, N)
 
+# Discretitzacions
 deltax = 1 / (N - 1)
 deltat_list = [(deltax)**2, 0.5*((deltax)**2)]    
 
@@ -45,11 +46,9 @@ for deltat in deltat_list:
     B = np.zeros((N, N))
 
     for i in range(N):
-        # Diagonal principal
         A[i, i] = 1 + gamma
         B[i, i] = 1 - gamma
 
-        # Sub y super diagonals
         if i > 0:
             A[i, i-1] = -gamma / 2
             B[i, i-1] = gamma / 2
@@ -79,15 +78,27 @@ plt.vlines(0.75,36.5,80,color='r',linestyle='--')
 plt.vlines(1.25,36.5,80,color='r',linestyle='--')
 plt.xlabel('Posició (cm)')
 plt.ylabel('Temperatura  (ºC)')
+plt.gca().tick_params(direction="in")
 plt.legend()
 plt.grid()
 plt.show()
 
-# Gràfica d'errors 
+# Gràfica d'errors absoluts
 plt.plot(x, err_list[0], label = f"$\\Delta T = \\Delta X)²$")
 plt.plot(x, err_list[1], label = f"$\\Delta T = 0.5 \\Delta X)²$")
 plt.xlabel('Posició (cm)')
 plt.ylabel('Error absolut (ºC)')
+plt.gca().tick_params(direction="in")
+plt.legend()
+plt.grid()
+plt.show()
+
+# Gràfica d'errros relatius percentuals
+plt.plot(x, (err_list[0] / analitica(ta))*100, label = f"$\\Delta T = \\Delta X)²$")
+plt.plot(x, (err_list[1] / analitica(ta))*100, label = f"$\\Delta T = 0.5 \\Delta X)²$")
+plt.xlabel('Posició (cm)')
+plt.ylabel('Error realtiu')
+plt.gca().tick_params(direction="in")
 plt.legend()
 plt.grid()
 plt.show()
