@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from funcions import analitica
 
-from codigoanalitica import analitica
 #condicions inicials
 L=2
 N=101 #mallat

@@ -1,27 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import math
-from codigoanalitica import analitica
-
-#Jacobi per la matriu Ax = b, on x serà T_(n+1)
-def jacobi(A, b, x0, max_iter=50):
-
-    # Descomposició A = D + E + F
-    D = np.diag(np.diag(A))
-    E = np.tril(A, k=-1)     
-    F = np.triu(A, k=1)      
-   
-    # Matriu D^{-1} i P
-    D_inv = np.diag(1 / np.diag(D))
-    P = -D_inv @ (E + F)
-
-    x = x0.copy()
-    for _ in range(max_iter):
-        x_new = P @ x + D_inv @ b
-        x_new[0] = x0[0]
-        x_new[-1] = x0[-1]
-        x = x_new
-    return x
+from funcions import analitica
+from funcions import jacobi
 
 #Paràmetres
 L = 2
@@ -43,7 +23,7 @@ for deltat in deltat_list:
     T = To*np.ones(N) # Condició inicial
 
     M = np.identity(N) + (gamma)*(np.diag(2*np.ones(N), 0) + np.diag(-np.ones(N-1), -1) + np.diag(-np.ones(N-1), 1)) #matriu M
-#Bucle
+    #Bucle
     t = 0.0
     while t < ta:
         b = deltat*np.ones(N) + T #Vector b
@@ -87,5 +67,3 @@ plt.gca().tick_params(direction="in")
 plt.legend(loc=1, frameon=False, borderaxespad= 0)
 plt.savefig('figures/relerr_implicit.png', bbox_inches='tight')
 plt.show()
-
-

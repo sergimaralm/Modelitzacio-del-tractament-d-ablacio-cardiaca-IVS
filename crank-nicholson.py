@@ -1,26 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from codigoanalitica import analitica
-
-# Metóde Jacobi resoldre Ax = b
-def jacobi(A, b, x0, max_iter=50):
-
-    # Descomposició A = D + E + F
-    D = np.diag(np.diag(A))
-    E = np.tril(A, k=-1)     
-    F = np.triu(A, k=1)      
-   
-    # Matriu D^{-1} i P
-    D_inv = np.diag(1 / np.diag(D))
-    P = -D_inv @ (E + F)
-
-    x = x0.copy()
-    for _ in range(max_iter):
-        x_new = P @ x + D_inv @ b
-        x_new[0] = x0[0]
-        x_new[-1] = x0[-1]
-        x = x_new
-    return x
+from funcions import analitica
+from funcions import jacobi
 
 # Parametres
 L = 2
