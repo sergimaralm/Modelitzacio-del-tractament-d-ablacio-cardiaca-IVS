@@ -55,3 +55,5 @@ while t < ta:
     #     print(t)
     #     break
     t += deltat
+
+#for i in range(1,len(T_list)):
