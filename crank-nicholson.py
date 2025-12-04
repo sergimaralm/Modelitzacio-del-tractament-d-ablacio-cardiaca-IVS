@@ -50,9 +50,7 @@ for deltat in deltat_list:
     while t < ta:
         b = (B @ T) + deltat 
         T = jacobi(A, b, T)  
-        # if any(((phi[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
-        #     print(t)
-        #     break
+
         t += deltat
 
     T_list.append((T/((0.56)/(Pext * L**2)))-273.15)

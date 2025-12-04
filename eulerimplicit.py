@@ -48,9 +48,7 @@ for deltat in deltat_list:
     while t < ta:
         b = deltat*np.ones(N) + T #Vector b
         T = jacobi(M, b, T)
-        # if any(((T1[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
-        #     print(t)
-        #     break
+        
         t += deltat
     T_list.append((T/((0.56)/(Pext * L**2)))-273.15)
     err_list.append(abs(analitica(ta) - ((T/((0.56)/(Pext * L**2)))-273.15)))
@@ -79,7 +77,7 @@ plt.gca().tick_params(direction="in")
 plt.legend(loc=1, frameon=False, borderaxespad= 0)
 plt.savefig('figures/err_implicit.png', bbox_inches='tight')
 plt.show()
-
+print(max((err_list[1] / analitica(ta))*100))
 # Gràfica d'errros relatius percentuals
 plt.plot(x, (err_list[0] / analitica(ta))*100, label = f"$\\Delta T = (\\Delta X)²$")
 plt.plot(x, (err_list[1] / analitica(ta))*100, label = f"$\\Delta T = 0.5 (\\Delta X)²$")

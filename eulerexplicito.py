@@ -48,6 +48,7 @@ plt.vlines(1.25,36.5,80,color='r',linestyle='--')
 plt.legend(loc=1, frameon=False, borderaxespad= 0)
 plt.savefig('figures/explicit051.png', bbox_inches='tight')
 plt.show()
+
 #Creació de les gràfiques d'errors de la primera
 plt.figure()
 plt.plot(x, Error_list[0], label = f"$\\Delta T = 0.51(\\Delta X)²$")
@@ -80,6 +81,7 @@ plt.vlines(1.25,36.5,80,color='r',linestyle='--')
 plt.legend(loc=1, frameon=False, borderaxespad= 1)
 plt.savefig('figures/explicit.png', bbox_inches='tight')
 plt.show()
+
 #Creació de les gràfiques d'errors de la primera
 plt.figure()
 plt.plot(x, Error_list[1], label = f"$\\Delta T = 0.49(\\Delta X)²$")
@@ -100,11 +102,3 @@ plt.gca().tick_params(direction="in")
 plt.legend(loc=1, frameon=False, borderaxespad= 0)
 plt.savefig('figures/error_rel_ex.png', bbox_inches='tight')
 plt.show()
-        # if any(((T[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
-        #         print(f"El temps mínim en segons és de {n*deltat}")
-        #         break
-    
-
-
-
-    # print(f"El temps mínim en segons és de {n*deltat}")
