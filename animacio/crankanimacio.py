@@ -32,32 +32,26 @@ x = np.linspace(0, 2, N)
 
 # Discretitzacions
 deltax = 1 / (N - 1)
-deltat_list = [(deltax)**2, 0.5*((deltax)**2)]    
+deltat = 0.5*((deltax)**2)   
 
 T_list = []
-err_list = []
-for deltat in deltat_list:
-    gamma = deltat / deltax**2
-    # Condició inicial
-    T = To*np.ones(N)
 
-    # Matrius A i B
-    A = np.identity(N) + (gamma)*(np.diag(np.ones(N), 0) + np.diag(-0.5*np.ones(N-1), -1) + np.diag(-0.5*np.ones(N-1), 1))
-    B = np.identity(N) + (gamma)*(np.diag(-np.ones(N), 0) + np.diag(0.5*np.ones(N-1), -1) + np.diag(0.5*np.ones(N-1), 1))
+gamma = deltat / deltax**2
+# Condició inicial
+T = To*np.ones(N)
+T_list.append((T/((0.56)/(Pext * L**2)))-273.15)
 
-    # Bucle
-    t = 0.0
-    T_sublist = [((T/((0.56)/(Pext * L**2)))-273.15)]
-    while t < ta:
-        b = (B @ T) + deltat 
-        T = jacobi(A, b, T)  
-        T_sublist.append(((T/((0.56)/(Pext * L**2)))-273.15))
-        # if any(((T[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
-        #     print(t)
-        #     break
-        t += deltat
+# Matrius A i B
+A = np.identity(N) + (gamma)*(np.diag(np.ones(N), 0) + np.diag(-0.5*np.ones(N-1), -1) + np.diag(-0.5*np.ones(N-1), 1))
+B = np.identity(N) + (gamma)*(np.diag(-np.ones(N), 0) + np.diag(0.5*np.ones(N-1), -1) + np.diag(0.5*np.ones(N-1), 1))
 
-    T_list.append(T_sublist)
-    err_list.append(abs(analitica(ta) - ((T/((0.56)/(Pext * L**2)))-273.15)))
-
-
+# Bucle
+t = 0.0
+while t < ta:
+    b = (B @ T) + deltat 
+    T = jacobi(A, b, T)  
+    T_list.append(((T/((0.56)/(Pext * L**2)))-273.15))
+    # if any(((T[0:36]/((0.56)/(Pext * L**2)))-273.15) > 50) == True:
+    #     print(t)
+    #     break
+    t += deltat

@@ -8,7 +8,7 @@ set xtics out nomirror
 set ytics out nomirror
 
 do for [i=0:200]{
-    arxiu_dades=sprintf("Sky%03d.txt",i)
+    arxiu_dades=sprintf("Crank%03d.txt",i)
     plot arxiu_dades u 1:4
 }
 
