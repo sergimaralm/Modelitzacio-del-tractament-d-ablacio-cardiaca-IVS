@@ -28,9 +28,8 @@ def analitica(ta):
 if __name__ == "__main__":
     x_list = np.linspace(0,2,101)
     T_list = analitica(0.025)
-
+    
     plt.plot(x_list,T_list)
-    plt.grid()
     plt.xlabel('Posició (cm)')
     plt.ylabel('Graus Centígrads')
     plt.hlines(50,0,2,color='r',linestyle='--')
