@@ -1,3 +1,4 @@
 # Pràctica-1
 
-Marc, Miguel, Yixuan, Sergi
+Executar cada .py per mostrar cada gràfica del mètode corresponent i guardar-les en la carpeta \figures
+
