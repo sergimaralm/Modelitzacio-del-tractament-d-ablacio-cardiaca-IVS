@@ -67,3 +67,5 @@ plt.gca().tick_params(direction="in")
 plt.legend(loc=1, frameon=False, borderaxespad= 0)
 plt.savefig('figures/relerr_implicit.png', bbox_inches='tight')
 plt.show()
+
+print(f"error màxim percentual: {max(err_list[1] / analitica(ta))*100:.4f}")
