@@ -1,10 +1,10 @@
-# Modelización del Tratamiento de Ablación Cardíaca (IVS) 🫀🔥
+# Modelización del Tratamiento de Ablación Cardíaca (IVS)
 
 Este repositorio contiene la implementación de diversos métodos numéricos para simular la evolución de la temperatura en el Tabique Interventricular (IVS) durante un tratamiento de ablación cardíaca.
 
 El objetivo principal es resolver la **Ecuación del Calor** unidimensional para modelar cómo se propaga la energía térmica en el tejido, comparando diferentes esquemas de discretización temporal.
 
-## 📋 Contenido del Repositorio
+## Contenido del Repositorio
 
 El proyecto está estructurado en módulos de Python, cada uno implementando un algoritmo numérico específico:
 
@@ -18,7 +18,7 @@ El proyecto está estructurado en módulos de Python, cada uno implementando un 
 | `figures/` | Carpeta donde se guardan las gráficas generadas automáticamente. |
 | `Pràctica 1.pdf` | Documentación teórica y enunciado de la práctica. |
 
-## 🚀 Requisitos e Instalación
+## Requisitos e Instalación
 
 Para ejecutar este proyecto, necesitarás **Python 3.x** y las librerías estándar de cálculo científico.
 
