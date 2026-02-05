@@ -1,28 +1,28 @@
-# Modelización del Tratamiento de Ablación Cardíaca (IVS)
+# Cardiac Ablation Treatment Modeling (IVS)
 
-Este repositorio contiene la implementación de diversos métodos numéricos para simular la evolución de la temperatura en el Tabique Interventricular (IVS) durante un tratamiento de ablación cardíaca.
+This repository contains the implementation of various numerical methods to simulate temperature evolution within the Interventricular Septum (IVS) during cardiac ablation treatment.
 
-El objetivo principal es resolver la **Ecuación del Calor** unidimensional para modelar cómo se propaga la energía térmica en el tejido, comparando diferentes esquemas de discretización temporal.
+The main objective is to solve the one-dimensional **Heat Equation** to model how thermal energy propagates through the tissue, comparing different temporal discretization schemes.
 
-## Contenido del Repositorio
+## Repository Contents
 
-El proyecto está estructurado en módulos de Python, cada uno implementando un algoritmo numérico específico:
+The project is structured into Python modules, each implementing a specific numerical algorithm:
 
-| Archivo | Descripción |
+| File | Description |
 | :--- | :--- |
-| `eulerexplicito.py` | Implementación del método de **Euler Explícito**. |
-| `eulerimplicit.py` | Implementación del método de **Euler Implícito** (incondicionalmente estable). |
-| `crank-nicholson.py` | Implementación del método de **Crank-Nicolson** (orden 2, incondicionalmente estable). |
-| `soluciotemps.py` | Análisis de la evolución temporal y comparativas. |
-| `funcions.py` | Librería auxiliar con funciones compartidas (solución analítica, método de Jacobi, etc.). |
-| `figures/` | Carpeta donde se guardan las gráficas generadas automáticamente. |
-| `Pràctica 1.pdf` | Documentación teórica y enunciado de la práctica. |
+| `eulerexplicito.py` | Implementation of the **Explicit Euler** method. |
+| `eulerimplicit.py` | Implementation of the **Implicit Euler** method (unconditionally stable). |
+| `crank-nicholson.py` | Implementation of the **Crank-Nicolson** method (2nd order, unconditionally stable). |
+| `soluciotemps.py` | Analysis of temporal evolution and comparisons. |
+| `funcions.py` | Auxiliary library with shared functions (analytical solution, Jacobi method, etc.). |
+| `figures/` | Folder where automatically generated plots are saved. |
+| `Pràctica 1.pdf` | Theoretical documentation and project description. |
 
-## Requisitos e Instalación
+## Requirements and Installation
 
-Para ejecutar este proyecto, necesitarás **Python 3.x** y las librerías estándar de cálculo científico.
+To run this project, you will need **Python 3.x** and standard scientific computing libraries.
 
-1. Clona el repositorio:
+1. Clone the repository:
    ```bash
    git clone [https://github.com/sergimaralm/Modelitzacio-del-tractament-d-ablacio-cardiaca-IVS.git](https://github.com/sergimaralm/Modelitzacio-del-tractament-d-ablacio-cardiaca-IVS.git)
    cd Modelitzacio-del-tractament-d-ablacio-cardiaca-IVS
